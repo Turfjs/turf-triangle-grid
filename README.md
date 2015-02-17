@@ -28,7 +28,7 @@ var units = 'miles';
 
 var triangleGrid = turf.triangleGrid(extent, cellWidth, units);
 
-//=triangle
+//=triangleGrid
 ```
 
 ## Installation
