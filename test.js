@@ -1,6 +1,7 @@
 var test = require('tape');
 var grid = require('./');
 var fs = require('fs');
+var bboxPolygon = require('turf-bbox-polygon');
 
 test('triangle-grid', function (t) {
   var bbox1 = [
@@ -38,6 +39,11 @@ test('triangle-grid', function (t) {
   t.ok(grid3.features.length);
   t.ok(grid4.features.length);
 
+  grid1.features.push(referencePoly(bbox1));
+  grid2.features.push(referencePoly(bbox2));
+  grid3.features.push(referencePoly(bbox3));
+  grid4.features.push(referencePoly(bbox4));
+
   fs.writeFileSync(__dirname+'/fixtures/out/grid1.geojson', JSON.stringify(grid1,null,2));
   fs.writeFileSync(__dirname+'/fixtures/out/grid2.geojson', JSON.stringify(grid2,null,2));
   fs.writeFileSync(__dirname+'/fixtures/out/grid3.geojson', JSON.stringify(grid3,null,2));
@@ -45,3 +51,12 @@ test('triangle-grid', function (t) {
 
   t.end();
 });
+
+function referencePoly (bbox) {
+  var poly = bboxPolygon(bbox);
+  poly.properties = {
+    'fill-opacity': 0,
+    'stroke': '#0ff'
+  };
+  return poly;
+}

@@ -12,15 +12,15 @@ var bbox1 = [
 var highres = grid(bbox1, 100, 'miles').features.length;
 var midres = grid(bbox1, 10, 'miles').features.length;
 var lowres = grid(bbox1, 1, 'miles').features.length;
-var suite = new Benchmark.Suite('turf-square-grid');
+var suite = new Benchmark.Suite('turf-triangle-grid');
 suite
-  .add('turf-square-grid -- '+highres+' cells',function () {
+  .add('turf-triangle-grid -- '+highres+' cells',function () {
     grid(bbox1, 100, 'miles');
   })
-  .add('turf-square-grid -- '+midres+' cells',function () {
+  .add('turf-triangle-grid -- '+midres+' cells',function () {
     grid(bbox1, 10, 'miles');
   })
-  .add('turf-square-grid -- '+lowres+' cells',function () {
+  .add('turf-triangle-grid -- '+lowres+' cells',function () {
     grid(bbox1, 1, 'miles');
   })
   .on('cycle', function (event) {
