@@ -4,7 +4,7 @@ var polygon = require('turf-polygon');
 var distance = require('turf-distance');
 
 /**
- * Takes a bounding box and a cell depth and returns a polygons in a grid
+ * Takes a bounding box and a cell depth and returns a set of triangular polygons in a grid.
  *
  * @module turf/triangle-grid
  * @category interpolation
